@@ -1,6 +1,9 @@
 package entities;
 
+import java.util.ArrayList;
+
 public class Produto {
+	
 	
 	private String nome;
 	private double preco_unit;
@@ -12,6 +15,9 @@ public class Produto {
 		this.preco_unit = preco_unit;
 		this.unidade = unidade;
 		this.qnt_estoque = qnt_estoque;
+	}
+
+	public Produto() {
 	}
 
 	public String getNome() {

@@ -6,9 +6,13 @@ import java.util.Scanner;
 import entities.Produto;
 
 public class Principal {
-	ArrayList<Produto> produtos = new ArrayList<>();
+	public static ArrayList<Produto> produtos = new ArrayList<Produto>();
+	//Produto prod = new Produto();
 	
 	public static void main(String[] args) {
+		produtos.add(new Produto("Macaco", 200, 1, 2));
+		produtos.add(new Produto("Golfinho", 3, 2, 5));
+		produtos.add(new Produto("Leão", 300, 4, 7));
 		int opcao = 1;
 		Scanner sc = new Scanner(System.in);
 		Principal pr = new Principal();
@@ -68,19 +72,33 @@ public class Principal {
 			sc.nextLine();
 			
 			switch (opc) {
+			// INCLUSAO
 			case 1:
 				char op = 0;
 				while (Character.toUpperCase(op) != 'N') {
 					System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 					System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\r\n"
 							+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
-							+ "INCLUSÃO DE PRODUTO"
+							+ "INCLUSÃO DE PRODUTO\r\n"
 							+ "");
-					System.out.println();
 					System.out.print("NOME: ");
 					String nome = sc.nextLine();
-					System.out.print("PREÇO: ");
+					for (Produto search : produtos) {
+						while (search.getNome().contains(nome)) {
+							System.out.println("\nPRODUTO JÁ CONSTA NO ESTOQUE.");
+							System.out.println("");
+							System.out.print("NOME: ");
+							nome = sc.nextLine();
+					    }
+					}
+					System.out.print("PREÇO: R$");
 					double preco = sc.nextDouble();
+					while (preco <= 0) {
+						System.out.println("\nDIGITE UM VALOR VÁLIDO!");
+						System.out.println();
+						System.out.print("PREÇO: R$");
+						preco = sc.nextDouble();
+					}
 					System.out.print("UNIDADE: ");
 					int unidade = sc.nextInt();
 					sc.nextLine();
@@ -98,13 +116,30 @@ public class Principal {
 					sc.nextLine();
 				}
 				break;
-				
-				
+			// ALTERAÇÃO
+			case 2:
+				System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\r\n"
+						+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
+						+ "ALTERAÇÃO DE PRODUTO\r\n"
+						+ "");
+				System.out.print("NOME: ");
+				String nome = sc.nextLine();
+				for (Produto search : produtos) {
+						if (search.getNome().contains(nome)) {
+							System.out.println("CONTEM");
+							break;
+						} else {
+							System.out.println("\nPRODUTO NÃO CONSTA NO ESTOQUE.");
+							System.out.println("");
+							System.out.print("NOME: ");
+							nome = sc.nextLine();
+						}
+				    	
+				    }
+				}
 			}
 		}
-		return;
 		
-	}
 	
 	public void move() {
 		return;
@@ -115,9 +150,6 @@ public class Principal {
 	}
 	
 	public void relatorio() {
-		produtos.add(new Produto("Macaco", 200, 1, 2));
-		produtos.add(new Produto("Golfinho", 3, 2, 5));
-		produtos.add(new Produto("Leão", 300, 4, 7));
 		int n = 1;
 		if (produtos.isEmpty()) {
 			System.out.println("Lista vazia!");
