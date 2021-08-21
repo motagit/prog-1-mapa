@@ -84,6 +84,10 @@ public class Principal {
 			case 3:
 				consultarProduto();
 				break;
+
+			case 4:
+				excluirProduto();
+				break;
 			}
 		}
 	}
@@ -203,8 +207,6 @@ public class Principal {
 					if (Character.toUpperCase(confirmar) == 'S') {
 						produtos.set(i, new Produto(nome, preco, unidade, quantidade));
 					}
-					//System.out.print("REPETIR OPERAÇÃO (S/N)? ");
-					//opc = sc.next().charAt(0);
 				}
 			}
 			if (!produto_encontrado) {
@@ -248,6 +250,54 @@ public class Principal {
 				System.out.println("PRODUTO NÃO ENCONTRADO!");
 			}
 			System.out.print("\nREPETIR OPERAÇÃO (S/N)? ");
+			opc = sc.next().charAt(0);
+			sc.nextLine();
+		}
+	}
+
+	private void excluirProduto() {
+		Scanner sc = new Scanner(System.in);
+		int opc = 1;
+		while (Character.toUpperCase(opc) != 'N') {
+			boolean produto_encontrado = false;
+			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+			System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\r\n"
+					+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
+					+ "EXCLUSÃO DE PRODUTO\r\n"
+					+ "");
+			System.out.print("INFORME O NOME DO PRODUTO: ");
+			String nome = sc.nextLine();
+			for (int i = 0; i < produtos.size(); i++) {
+				if (produtos.get(i).getNome().equalsIgnoreCase(nome)) {
+					System.out.println("PRODUTO ENCONTRADO!");
+					produto_encontrado = true;
+					//
+					//
+					System.out.println("-=-=-=-=-=-=-= PRODUTO " + i + " -=-=-=-=-=-=-=");
+					System.out.println("Nome: " + produtos.get(i).getNome());
+					System.out.println("Preço Unitario: R$" + produtos.get(i).getPreco_unit());
+					System.out.println("Unidade: " + produtos.get(i).getUnidade());
+					System.out.println("Quantidade em estoque: " + produtos.get(i).getQnt_estoque());
+					//
+					//
+					System.out.print("DESEJA MESMO EXCLUIR O PRODUTO (S/N)? ");
+					char confirmar_exclusao = sc.next().charAt(0);
+					while (Character.toUpperCase(confirmar_exclusao) != 'S'
+							&& Character.toUpperCase(confirmar_exclusao) != 'N') {
+						System.out.println("\nDIGITE UM VALOR VÁLIDO!");
+						System.out.println();
+						System.out.print("CONFIRMA ALTERAÇÃO (S/N)? ");
+						confirmar_exclusao = sc.next().charAt(0);
+					}
+					if (Character.toUpperCase(confirmar_exclusao) == 'S') {
+						produtos.remove(i);
+					}
+				}
+			}
+			if (!produto_encontrado) {
+				System.out.println("PRODUTO NÃO ENCONTRADO!");
+			}
+			System.out.print("REPETIR OPERAÇÃO (S/N)? ");
 			opc = sc.next().charAt(0);
 			sc.nextLine();
 		}
