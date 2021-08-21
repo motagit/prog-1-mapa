@@ -6,34 +6,34 @@ import java.util.Scanner;
 import entities.Produto;
 
 public class Principal {
-	public static ArrayList<Produto> produtos = new ArrayList<Produto>();
+	public static ArrayList<Produto> produtos = new ArrayList<>();
 	//Produto prod = new Produto();
 	
 	public static void main(String[] args) {
-		produtos.add(new Produto("Macaco", 200, 1, 2));
-		produtos.add(new Produto("Golfinho", 3, 2, 5));
-		produtos.add(new Produto("Le„o", 300, 4, 7));
+		produtos.add(new Produto("Viga", 200, "m", 2));
+		produtos.add(new Produto("Caixa", 3, "kg", 5));
+		produtos.add(new Produto("Porta", 300, "cm", 7));
 		int opcao = 1;
 		Scanner sc = new Scanner(System.in);
 		Principal pr = new Principal();
 		while (opcao != 0) {
 			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-			System.out.println("EMPRESA DE IMPORTA«√O DE PRODUTOS LTDA.\r\n"
+			System.out.println("EMPRESA DE IMPORTA√á√ÉO DE PRODUTOS LTDA.\r\n"
 					+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
 					+ "MENU PRINCIPAL\r\n"
 					+ "");
 			System.out.println("1 - CADASTRO DE PRODUTOS\r\n"
-					+ "2 - MOVIMENTA«√O\r\n"
-					+ "3 - REAJUSTE DE PRE«OS\r\n"
-					+ "4 - RELAT”RIOS\r\n"
+					+ "2 - MOVIMENTA√á√ÉO\r\n"
+					+ "3 - REAJUSTE DE PRE√áOS\r\n"
+					+ "4 - RELAT√ìRIOS\r\n"
 					+ "0 - FINALIZAR"
 					+ "");
-			System.out.print("OP«√O: ");
+			System.out.print("OP√á√ÉO: ");
 			opcao = sc.nextInt();
 			sc.nextLine();
 			switch (opcao) {
 			case 1:
-				pr.cadastro();
+				pr.menuCadastroProduto();
 				break;
 			case 2:
 //				pr.move();
@@ -45,112 +45,182 @@ public class Principal {
 				pr.relatorio();
 				break;
 			default:
-				System.out.println("OpÁ„o inv·lida!");
+				System.out.println("Op√ß√£o invalida!");
 				break;
 			}
 			
 		}
 
 	}
-	public void cadastro () {
+
+	private void menuCadastroProduto () {
 		Scanner sc = new Scanner(System.in);
 		int opc = 1;
 		
 		while (opc != 0) {
 			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-			System.out.println("EMPRESA DE IMPORTA«√O DE PRODUTOS LTDA.\r\n"
+			System.out.println("EMPRESA DE IMPORTA√á√ÉO DE PRODUTOS LTDA.\r\n"
 					+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
 					+ "CADASTRO DE PRODUTOS\r\n"
 					+ "");
-			System.out.println("1 - INCLUS√O\r\n"
-					+ "2 - ALTERA«√O\r\n"
+			System.out.println("1 - INCLUS√ÉO\r\n"
+					+ "2 - ALTERA√á√ÉO\r\n"
 					+ "3 - CONSULTA\r\n"
-					+ "4 - EXCLUS√O\r\n"
+					+ "4 - EXCLUS√ÉO\r\n"
 					+ "0 - RETORNAR");
-			System.out.print("OP«√O: ");
+			System.out.print("OP√á√ÉO: ");
 			opc = sc.nextInt();
 			sc.nextLine();
 			
 			switch (opc) {
 			// INCLUSAO
 			case 1:
-				char op = 0;
-				while (Character.toUpperCase(op) != 'N') {
-					System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-					System.out.println("EMPRESA DE IMPORTA«√O DE PRODUTOS LTDA.\r\n"
-							+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
-							+ "INCLUS√O DE PRODUTO\r\n"
-							+ "");
-					System.out.print("NOME: ");
-					String nome = sc.nextLine();
-					for (Produto search : produtos) {
-						while (search.getNome().contains(nome)) {
-							System.out.println("\nPRODUTO J¡ CONSTA NO ESTOQUE.");
-							System.out.println("");
-							System.out.print("NOME: ");
-							nome = sc.nextLine();
-					    }
-					}
-					System.out.print("PRE«O: R$");
-					double preco = sc.nextDouble();
-					while (preco <= 0) {
-						System.out.println("\nDIGITE UM VALOR V¡LIDO!");
-						System.out.println();
-						System.out.print("PRE«O: R$");
-						preco = sc.nextDouble();
-					}
-					System.out.print("UNIDADE: ");
-					int unidade = sc.nextInt();
-					sc.nextLine();
-					System.out.print("QUANTIDADE: ");
-					int quantidade = sc.nextInt();
-					sc.nextLine();
-					System.out.print("CONFIRMA INCLUSAO (S/N)? ");
-					char confirmar = sc.next().charAt(0);
-					sc.nextLine();
-					if (Character.toUpperCase(confirmar) == 'S') {
-						produtos.add(new Produto(nome, preco, unidade, quantidade));	
-					} 
-					System.out.print("REPETIR OPERA«√O (S/N)? ");
-					op = sc.next().charAt(0);
-					sc.nextLine();
-				}
+				incluirProduto();
 				break;
-			// ALTERA«√O
+			// ALTERA√á√ÉO
 			case 2:
-				System.out.println("EMPRESA DE IMPORTA«√O DE PRODUTOS LTDA.\r\n"
-						+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
-						+ "ALTERA«√O DE PRODUTO\r\n"
-						+ "");
-				System.out.print("NOME: ");
-				String nome = sc.nextLine();
-				for (Produto search : produtos) {
-						if (search.getNome().contains(nome)) {
-							System.out.println("CONTEM");
-							break;
-						} else {
-							System.out.println("\nPRODUTO N√O CONSTA NO ESTOQUE.");
-							System.out.println("");
-							System.out.print("NOME: ");
-							nome = sc.nextLine();
-						}
-				    	
-				    }
-				}
+				alterarProduto();
+				break;
 			}
 		}
-		
-	
-	public void move() {
-		return;
 	}
-	
-	public void reajuste() {
-		return;
+
+	private void incluirProduto() {
+		Scanner sc = new Scanner(System.in);
+		char opc = 0;
+		while (Character.toUpperCase(opc) != 'N') {
+			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+			System.out.println("EMPRESA DE IMPORTA√á√ÉO DE PRODUTOS LTDA.\r\n"
+					+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
+					+ "INCLUS√ÉO DE PRODUTO\r\n"
+					+ "");
+			System.out.print("NOME: ");
+			String nome = sc.nextLine();
+			for (int i=0; i < produtos.size(); i++) {
+				while (produtos.get(i).getNome().equalsIgnoreCase(nome)) {
+					System.out.println("PRODUTO J√Å CADASTRADO!");
+					System.out.print("\nNOME: ");
+					nome = sc.nextLine();
+					i=0;
+				}
+			}
+			System.out.print("PRE√áO: R$");
+			double preco = sc.nextDouble();
+			sc.nextLine();
+			while (preco < 0) {
+				System.out.println("\nDIGITE UM VALOR V√ÅLIDO!");
+				System.out.println();
+				System.out.print("PRE√áO: R$");
+				preco = sc.nextDouble();
+			}
+
+			System.out.print("UNIDADE: ");
+			String unidade = sc.nextLine();
+
+			System.out.print("QUANTIDADE: ");
+			int quantidade = sc.nextInt();
+			while (quantidade <= 0) {
+				System.out.println("\nDIGITE UM VALOR V√ÅLIDO!");
+				System.out.println();
+				System.out.print("PRE√áO: R$");
+				quantidade = sc.nextInt();
+			}
+			sc.nextLine();
+			System.out.print("CONFIRMA INCLUSAO (S/N)? ");
+			char confirmar = sc.next().charAt(0);
+			while (Character.toUpperCase(confirmar) != 'S' && Character.toUpperCase(confirmar) != 'N') {
+				System.out.println("\nDIGITE UM VALOR V√ÅLIDO!");
+				System.out.println();
+				System.out.print("CONFIRMA INCLUSAO (S/N)? ");
+				confirmar = sc.next().charAt(0);
+			}
+			sc.nextLine();
+			if (Character.toUpperCase(confirmar) == 'S') {
+				produtos.add(new Produto(nome, preco, unidade, quantidade));
+			}
+			System.out.print("REPETIR OPERA√á√ÉO (S/N)? ");
+			opc = sc.next().charAt(0);
+			sc.nextLine();
+		}
 	}
-	
-	public void relatorio() {
-		int n = 1;
+
+	private void alterarProduto() {
+		Scanner sc = new Scanner(System.in);
+		boolean produto_encontrado = false;
+		int opc = 1;
+		while (Character.toUpperCase(opc) != 'N') {
+			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+			System.out.println("EMPRESA DE IMPORTA√á√ÉO DE PRODUTOS LTDA.\r\n"
+					+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
+					+ "ALTERA√á√ÉO DE PRODUTO\r\n"
+					+ "");
+			System.out.print("INFORME O NOME DO PRODUTO: ");
+			String nome = sc.nextLine();
+			for (int i=0; i < produtos.size(); i++) {
+				if (produtos.get(i).getNome().equalsIgnoreCase(nome)) {
+					System.out.println("PRODUTO ENCONTRADO!");
+					produto_encontrado = true;
+					//
+					//
+					System.out.println("-=-=-=-=-=-=-= PRODUTO " + i + " -=-=-=-=-=-=-=");
+					System.out.println("Nome: " + produtos.get(i).getNome());
+					System.out.println("Pre√ßo Unitario: R$" + produtos.get(i).getPreco_unit());
+					System.out.println("Unidade: " + produtos.get(i).getUnidade());
+					System.out.println("Quantidade em estoque: " + produtos.get(i).getQnt_estoque());
+					//
+					//
+					System.out.print("\nPRE√áO A SER ALTERADO: R$");
+					double preco = sc.nextDouble();
+					sc.nextLine();
+					while (preco < 0) {
+						System.out.println("\nDIGITE UM VALOR V√ÅLIDO!");
+						System.out.println();
+						System.out.print("PRE√áO: R$");
+						preco = sc.nextDouble();
+					}
+					System.out.print("UNIDADE A SER ALTERADA: ");
+					String unidade = sc.nextLine();
+					System.out.print("QUANTIDADE A SER ALTERADA: ");
+					int quantidade = sc.nextInt();
+					while (quantidade <= 0) {
+						System.out.println("\nDIGITE UM VALOR V√ÅLIDO!");
+						System.out.println();
+						System.out.print("PRE√áO A SER ALTERADO: R$");
+						quantidade = sc.nextInt();
+					}
+					sc.nextLine();
+					System.out.print("CONFIRMA ALTERA√á√ÉO (S/N)? ");
+					char confirmar = sc.next().charAt(0);
+					while (Character.toUpperCase(confirmar) != 'S' && Character.toUpperCase(confirmar) != 'N') {
+						System.out.println("\nDIGITE UM VALOR V√ÅLIDO!");
+						System.out.println();
+						System.out.print("CONFIRMA ALTERA√á√ÉO (S/N)? ");
+						confirmar = sc.next().charAt(0);
+					}
+					if (Character.toUpperCase(confirmar) == 'S') {
+						produtos.set(i, new Produto(nome, preco, unidade, quantidade));
+					}
+					//System.out.print("REPETIR OPERA√á√ÉO (S/N)? ");
+					//opc = sc.next().charAt(0);
+				}
+			}
+			if (!produto_encontrado) {
+				System.out.println("PRODUTO N√ÉO ENCONTRADO!");
+			}
+			System.out.print("REPETIR OPERA√á√ÉO (S/N)? ");
+			opc = sc.next().charAt(0);
+			sc.nextLine();
+		}
+	}
+
+	private void move() {
+	}
+
+	private void reajuste() {
+	}
+
+	private void relatorio() {
+		int n = 0;
 		if (produtos.isEmpty()) {
 			System.out.println("Lista vazia!");
 		} else {
@@ -158,14 +228,12 @@ public class Principal {
 			for (Produto produtos : produtos) {
 				System.out.println("-=-=-=-=-=-=-= PRODUTO " + n + " -=-=-=-=-=-=-=");
 	            System.out.println("Nome: " + produtos.getNome());
-	            System.out.println("PreÁo Unit·rio: R$" + produtos.getPreco_unit());
+	            System.out.println("Pre√ßo Unitario: R$" + produtos.getPreco_unit());
 	            System.out.println("Unidade: " + produtos.getUnidade());
 	            System.out.println("Quantidade em estoque: " + produtos.getQnt_estoque());
 	            n++;
 	        }
 		}
-
-		return;
 	}
 
 }
