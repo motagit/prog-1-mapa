@@ -81,6 +81,9 @@ public class Principal {
 			case 2:
 				alterarProduto();
 				break;
+			case 3:
+				consultarProduto();
+				break;
 			}
 		}
 	}
@@ -146,9 +149,9 @@ public class Principal {
 
 	private void alterarProduto() {
 		Scanner sc = new Scanner(System.in);
-		boolean produto_encontrado = false;
 		int opc = 1;
 		while (Character.toUpperCase(opc) != 'N') {
+			boolean produto_encontrado = false;
 			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 			System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\r\n"
 					+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
@@ -208,6 +211,43 @@ public class Principal {
 				System.out.println("PRODUTO NÃO ENCONTRADO!");
 			}
 			System.out.print("REPETIR OPERAÇÃO (S/N)? ");
+			opc = sc.next().charAt(0);
+			sc.nextLine();
+		}
+	}
+
+	private void consultarProduto() {
+		Scanner sc = new Scanner(System.in);
+
+		int opc = 1;
+		while (Character.toUpperCase(opc) != 'N') {
+			boolean produto_encontrado = false;
+			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+			System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\r\n"
+					+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
+					+ "CONSULTA DE PRODUTO\r\n"
+					+ "");
+			System.out.print("INFORME O NOME DO PRODUTO: ");
+			String nome = sc.nextLine();
+			for (int i = 0; i < produtos.size(); i++) {
+				if (produtos.get(i).getNome().equalsIgnoreCase(nome)) {
+					System.out.println("PRODUTO ENCONTRADO!");
+					produto_encontrado = true;
+					//
+					//
+					System.out.println("-=-=-=-=-=-=-= PRODUTO " + i + " -=-=-=-=-=-=-=");
+					System.out.println("Nome: " + produtos.get(i).getNome());
+					System.out.println("Preço Unitario: R$" + produtos.get(i).getPreco_unit());
+					System.out.println("Unidade: " + produtos.get(i).getUnidade());
+					System.out.println("Quantidade em estoque: " + produtos.get(i).getQnt_estoque());
+					//
+					//
+				}
+			}
+			if (!produto_encontrado) {
+				System.out.println("PRODUTO NÃO ENCONTRADO!");
+			}
+			System.out.print("\nREPETIR OPERAÇÃO (S/N)? ");
 			opc = sc.next().charAt(0);
 			sc.nextLine();
 		}
