@@ -21,16 +21,32 @@ public class Produto {
 		return nome;
 	}
 
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	public double getPreco_unit() {
 		return preco_unit;
+	}
+
+	public void setPreco_unit(double preco) {
+		this.preco_unit = preco;
 	}
 
 	public String getUnidade() {
 		return unidade;
 	}
 
+	public void setUnidade (String unidade) {
+		this.unidade = unidade;
+	}
+
 	public int getQnt_estoque() {
 		return qnt_estoque;
+	}
+
+	public void setQnt_estoque(int qnt_estoque) {
+		this.qnt_estoque = qnt_estoque;
 	}
 
 	public void setAddQuant(int quantidade) {

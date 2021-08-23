@@ -7,7 +7,7 @@ import entities.Produto;
 
 public class Principal {
 	public static ArrayList<Produto> produtos = new ArrayList<>();
-	Produto prod = new Produto();
+	//Produto prod = new Produto();
 	
 	public static void main(String[] args) {
 		produtos.add(new Produto("Viga", 200, "m", 2));
@@ -196,10 +196,53 @@ public class Principal {
         char opc = 0;
 
         while (Character.toUpperCase(opc) != 'N') {
+			boolean produto_encontrado = false;
 			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
             System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\n" +
                     "SISTEMA DE CONTROLE DE ESTOQUE\n" +
                     "MOVIMENTAÇÃO - SAIDA DE PRODUTO\n");
+			System.out.print("PRODUTO: ");
+			String nome = sc.nextLine();
+			for (int i=0; i < produtos.size(); i++) {
+				if (produtos.get(i).getNome().equalsIgnoreCase(nome)) {
+					System.out.println("PRODUTO ENCONTRADO!");
+					produto_encontrado = true;
+					//
+					//
+					System.out.println("-=-=-=-=-=-=-= PRODUTO " + i + " -=-=-=-=-=-=-=");
+					System.out.println("Nome: " + produtos.get(i).getNome());
+					System.out.println("Quantidade em estoque: " + produtos.get(i).getQnt_estoque());
+					//
+					//
+					System.out.print("QUANTIDADE DE SAIDA: ");
+					int quantidade = sc.nextInt();
+					while (quantidade <= 0) {
+						System.out.println("\nDIGITE UM VALOR VÁLIDO!");
+						System.out.println();
+						System.out.print("QUANTIDADE DE SAIDA: ");
+						quantidade = sc.nextInt();
+					}
+					System.out.println("QUANTIDADE FINAL: " + (produtos.get(i).getQnt_estoque() - quantidade));
+					sc.nextLine();
+					System.out.print("CONFIRMA ALTERAÇÃO (S/N)? ");
+					char confirmar = sc.next().charAt(0);
+					while (Character.toUpperCase(confirmar) != 'S' && Character.toUpperCase(confirmar) != 'N') {
+						System.out.println("\nDIGITE UM VALOR VÁLIDO!");
+						System.out.println();
+						System.out.print("CONFIRMA ALTERAÇÃO (S/N)? ");
+						confirmar = sc.next().charAt(0);
+					}
+					if (Character.toUpperCase(confirmar) == 'S') {
+						produtos.get(i).setRemoveQuant(quantidade);
+					}
+				}
+			}
+			if (!produto_encontrado) {
+				System.out.println("PRODUTO NÃO ENCONTRADO!");
+			}
+			System.out.print("REPETIR OPERAÇÃO (S/N)? ");
+			opc = sc.next().charAt(0);
+			sc.nextLine();
         }
 	}
 
@@ -258,6 +301,11 @@ public class Principal {
 			sc.nextLine();
 			if (Character.toUpperCase(confirmar) == 'S') {
 				produtos.add(new Produto(nome, preco, unidade, quantidade));
+//				produtos.add(produtos.get(produtos.size() + 1).setNome(nome),
+//						produtos.get(produtos.size() + 1).setPreco_unit(preco),
+//						produtos.get(produtos.size() + 1).setUnidade(unidade),
+//						produtos.get(produtos.size() + 1).setQnt_estoque(quantidade));
+//				produtos.add(nome, preco, unidade, quantidade);
 			}
 			System.out.print("REPETIR OPERAÇÃO (S/N)? ");
 			opc = sc.next().charAt(0);
