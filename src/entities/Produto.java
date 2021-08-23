@@ -33,14 +33,18 @@ public class Produto {
 		return qnt_estoque;
 	}
 
+	public void setAddQuant(int quantidade) {
+		this.qnt_estoque += quantidade;
+	}
+
+	public void setRemoveQuant(int quantidade) {
+		this.qnt_estoque -= quantidade;
+	}
+
 	public boolean equals(Object obj) {
-		//se nao forem objetos da mesma classe sao objetos diferentes
 		if(!(obj instanceof Produto)) return false;
-		//se forem o mesmo objeto, retorna true
 		if(obj == this) return true;
-		// aqui o cast é seguro por causa do teste feito acima
 		Produto produto = (Produto) obj;
-		//aqui você compara a seu gosto, o ideal é comparar atributo por atributo
 		return this.nome.equals(produto.getNome());
 	}
 	@Override
