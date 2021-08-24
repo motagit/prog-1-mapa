@@ -465,23 +465,26 @@ public class Principal {
 		}
 	}
 
-
-
 	private void relatorio() {
 		int n = 0;
+		System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+		System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\n" +
+				"SISTEMA DE CONTROLE DE ESTOQUE\n" +
+				"RELATÓRIO LISTA DE PREÇOS\n");
 		if (produtos.isEmpty()) {
-			System.out.println("Lista vazia!");
+			System.out.println("NÃO HÁ PRODUTOS!");
 		} else {
-			
 			for (Produto produtos : produtos) {
-				System.out.println("-=-=-=-=-=-=-= PRODUTO " + n + " -=-=-=-=-=-=-=");
+				System.out.println("-=-=-=- PRODUTO " + n + " -=-=-=-");
 	            System.out.println("Nome: " + produtos.getNome());
 	            System.out.println("Preço Unitario: R$" + produtos.getPreco_unit());
 	            System.out.println("Unidade: " + produtos.getUnidade());
 	            System.out.println("Quantidade em estoque: " + produtos.getQnt_estoque());
+				System.out.println();
 	            n++;
 	        }
+			System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+			System.out.println("\n              FIM DO RELATÓRIO               ");
 		}
 	}
-
 }
