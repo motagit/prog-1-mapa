@@ -10,18 +10,17 @@ public class Principal {
 	//Produto prod = new Produto();
 	
 	public static void main(String[] args) {
-		produtos.add(new Produto("Viga", 200, "m", 2));
-		produtos.add(new Produto("Caixa", 3, "kg", 5));
-		produtos.add(new Produto("Porta", 300, "cm", 7));
+		produtos.add(new Produto("Viga", 200, "m", 15));
+		produtos.add(new Produto("Caixa", 4, "kg", 32));
+		produtos.add(new Produto("Porta", 800, "cm", 7));
+		produtos.add(new Produto("Parafuso", 2, "g", 240));
+		produtos.add(new Produto("Madeira", 100, "cm", 120));
 		int opcao = 1;
 		Scanner sc = new Scanner(System.in);
 		Principal pr = new Principal();
 		while (opcao != 0) {
-			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-			System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\r\n"
-					+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
-					+ "MENU PRINCIPAL\r\n"
-					+ "");
+			pr.tituloMenu();
+			System.out.println("MENU PRINCIPAL\n");
 			System.out.println("1 - CADASTRO DE PRODUTOS\r\n"
 					+ "2 - MOVIMENTAÇÃO\r\n"
 					+ "3 - REAJUSTE DE PREÇOS\r\n"
@@ -41,7 +40,7 @@ public class Principal {
 				pr.menuMovimentacao();
 				break;
 			case 3:
-//				pr.reajuste();
+				pr.reajuste();
 				break;
 			case 4:
 				pr.relatorio();
@@ -60,11 +59,8 @@ public class Principal {
 		int opc = 1;
 		
 		while (opc != 0) {
-			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-			System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\r\n"
-					+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
-					+ "CADASTRO DE PRODUTOS\r\n"
-					+ "");
+			tituloMenu();
+			System.out.println("CADASTRO DE PRODUTOS\n");
 			System.out.println("1 - INCLUSÃO\r\n"
 					+ "2 - ALTERAÇÃO\r\n"
 					+ "3 - CONSULTA\r\n"
@@ -105,10 +101,8 @@ public class Principal {
 		int opc = 1;
 
 		while (opc != 0) {
-			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-			System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\n" +
-					"SISTEMA DE CONTROLE DE ESTOQUE\n" +
-					"MOVIMENTAÇÃO\n");
+			tituloMenu();
+			System.out.println("MOVIMENTAÇÃO\n");
 			System.out.println("1 - ENTRADA\n" +
 					"2 - SAÍDA\n" +
 					"0 - RETORNAR\n");
@@ -140,10 +134,8 @@ public class Principal {
 
         while (Character.toUpperCase(opc) != 'N') {
             boolean produto_encontrado = false;
-			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-            System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\n" +
-                    "SISTEMA DE CONTROLE DE ESTOQUE\n" +
-                    "MOVIMENTAÇÃO - ENTRADA DE PRODUTO\n");
+            tituloMenu();
+			System.out.println("MOVIMENTAÇÃO - ENTRADA DE PRODUTO\n");
             System.out.print("PRODUTO: ");
             String nome = sc.nextLine();
             for (int i=0; i < produtos.size(); i++) {
@@ -152,9 +144,10 @@ public class Principal {
                     produto_encontrado = true;
                     //
                     //
-                    System.out.println("-=-=-=-=-=-=-= PRODUTO " + i + " -=-=-=-=-=-=-=");
+					System.out.println("-=-=-=- PRODUTO " + i + " -=-=-=-");
                     System.out.println("Nome: " + produtos.get(i).getNome());
                     System.out.println("Quantidade em estoque: " + produtos.get(i).getQnt_estoque());
+					System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-");
                     //
                     //
                     System.out.print("QUANTIDADE DE ENTRADA: ");
@@ -177,6 +170,7 @@ public class Principal {
                     }
                     if (Character.toUpperCase(confirmar) == 'S') {
                         produtos.get(i).setAddQuant(quantidade);
+                        break;
                     }
                 }
             }
@@ -197,10 +191,8 @@ public class Principal {
 
         while (Character.toUpperCase(opc) != 'N') {
 			boolean produto_encontrado = false;
-			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-            System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\n" +
-                    "SISTEMA DE CONTROLE DE ESTOQUE\n" +
-                    "MOVIMENTAÇÃO - SAIDA DE PRODUTO\n");
+			tituloMenu();
+			System.out.println("MOVIMENTAÇÃO - SAIDA DE PRODUTO\n");
 			System.out.print("PRODUTO: ");
 			String nome = sc.nextLine();
 			for (int i=0; i < produtos.size(); i++) {
@@ -209,9 +201,10 @@ public class Principal {
 					produto_encontrado = true;
 					//
 					//
-					System.out.println("-=-=-=-=-=-=-= PRODUTO " + i + " -=-=-=-=-=-=-=");
+					System.out.println("-=-=-=- PRODUTO " + i + " -=-=-=-");
 					System.out.println("Nome: " + produtos.get(i).getNome());
 					System.out.println("Quantidade em estoque: " + produtos.get(i).getQnt_estoque());
+					System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-");
 					//
 					//
 					System.out.print("QUANTIDADE DE SAIDA: ");
@@ -234,6 +227,7 @@ public class Principal {
 					}
 					if (Character.toUpperCase(confirmar) == 'S') {
 						produtos.get(i).setRemoveQuant(quantidade);
+						break;
 					}
 				}
 			}
@@ -246,18 +240,12 @@ public class Principal {
         }
 	}
 
-	//private void reajuste() {
-	//}
-
 	private void incluirProduto() {
 		Scanner sc = new Scanner(System.in);
 		char opc = 0;
 		while (Character.toUpperCase(opc) != 'N') {
-			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-			System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\r\n"
-					+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
-					+ "INCLUSÃO DE PRODUTO\r\n"
-					+ "");
+			tituloMenu();
+			System.out.println("INCLUSÃO DE PRODUTO\n");
 			System.out.print("NOME: ");
 			String nome = sc.nextLine();
 			for (int i=0; i < produtos.size(); i++) {
@@ -301,11 +289,6 @@ public class Principal {
 			sc.nextLine();
 			if (Character.toUpperCase(confirmar) == 'S') {
 				produtos.add(new Produto(nome, preco, unidade, quantidade));
-//				produtos.add(produtos.get(produtos.size() + 1).setNome(nome),
-//						produtos.get(produtos.size() + 1).setPreco_unit(preco),
-//						produtos.get(produtos.size() + 1).setUnidade(unidade),
-//						produtos.get(produtos.size() + 1).setQnt_estoque(quantidade));
-//				produtos.add(nome, preco, unidade, quantidade);
 			}
 			System.out.print("REPETIR OPERAÇÃO (S/N)? ");
 			opc = sc.next().charAt(0);
@@ -318,11 +301,8 @@ public class Principal {
 		int opc = 1;
 		while (Character.toUpperCase(opc) != 'N') {
 			boolean produto_encontrado = false;
-			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-			System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\r\n"
-					+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
-					+ "ALTERAÇÃO DE PRODUTO\r\n"
-					+ "");
+			tituloMenu();
+			System.out.println("ALTERAÇÃO DE PRODUTO\n");
 			System.out.print("INFORME O NOME DO PRODUTO: ");
 			String nome = sc.nextLine();
 			for (int i=0; i < produtos.size(); i++) {
@@ -331,11 +311,12 @@ public class Principal {
 					produto_encontrado = true;
 					//
 					//
-					System.out.println("-=-=-=-=-=-=-= PRODUTO " + i + " -=-=-=-=-=-=-=");
+					System.out.println("-=-=-=- PRODUTO " + i + " -=-=-=-");
 					System.out.println("Nome: " + produtos.get(i).getNome());
 					System.out.println("Preço Unitario: R$" + produtos.get(i).getPreco_unit());
 					System.out.println("Unidade: " + produtos.get(i).getUnidade());
 					System.out.println("Quantidade em estoque: " + produtos.get(i).getQnt_estoque());
+					System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-");
 					//
 					//
 					System.out.print("\nPREÇO A SER ALTERADO: R$");
@@ -368,6 +349,7 @@ public class Principal {
 					}
 					if (Character.toUpperCase(confirmar) == 'S') {
 						produtos.set(i, new Produto(nome, preco, unidade, quantidade));
+						break;
 					}
 				}
 			}
@@ -386,11 +368,8 @@ public class Principal {
 		int opc = 1;
 		while (Character.toUpperCase(opc) != 'N') {
 			boolean produto_encontrado = false;
-			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-			System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\r\n"
-					+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
-					+ "CONSULTA DE PRODUTO\r\n"
-					+ "");
+			tituloMenu();
+			System.out.println("CONSULTA DE PRODUTO\n");
 			System.out.print("INFORME O NOME DO PRODUTO: ");
 			String nome = sc.nextLine();
 			for (int i = 0; i < produtos.size(); i++) {
@@ -399,11 +378,12 @@ public class Principal {
 					produto_encontrado = true;
 					//
 					//
-					System.out.println("-=-=-=-=-=-=-= PRODUTO " + i + " -=-=-=-=-=-=-=");
+					System.out.println("-=-=-=- PRODUTO " + i + " -=-=-=-");
 					System.out.println("Nome: " + produtos.get(i).getNome());
 					System.out.println("Preço Unitario: R$" + produtos.get(i).getPreco_unit());
 					System.out.println("Unidade: " + produtos.get(i).getUnidade());
 					System.out.println("Quantidade em estoque: " + produtos.get(i).getQnt_estoque());
+					System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-");
 					//
 					//
 				}
@@ -422,11 +402,8 @@ public class Principal {
 		int opc = 1;
 		while (Character.toUpperCase(opc) != 'N') {
 			boolean produto_encontrado = false;
-			System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-			System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\r\n"
-					+ "SISTEMA DE CONTROLE DE ESTOQUE\r\n"
-					+ "EXCLUSÃO DE PRODUTO\r\n"
-					+ "");
+			tituloMenu();
+			System.out.println("EXCLUSÃO DE PRODUTO\n");
 			System.out.print("INFORME O NOME DO PRODUTO: ");
 			String nome = sc.nextLine();
 			for (int i = 0; i < produtos.size(); i++) {
@@ -435,11 +412,12 @@ public class Principal {
 					produto_encontrado = true;
 					//
 					//
-					System.out.println("-=-=-=-=-=-=-= PRODUTO " + i + " -=-=-=-=-=-=-=");
+					System.out.println("-=-=-=- PRODUTO " + i + " -=-=-=-");
 					System.out.println("Nome: " + produtos.get(i).getNome());
 					System.out.println("Preço Unitario: R$" + produtos.get(i).getPreco_unit());
 					System.out.println("Unidade: " + produtos.get(i).getUnidade());
 					System.out.println("Quantidade em estoque: " + produtos.get(i).getQnt_estoque());
+					System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-");
 					//
 					//
 					System.out.print("DESEJA MESMO EXCLUIR O PRODUTO (S/N)? ");
@@ -453,6 +431,7 @@ public class Principal {
 					}
 					if (Character.toUpperCase(confirmar_exclusao) == 'S') {
 						produtos.remove(i);
+						break;
 					}
 				}
 			}
@@ -465,12 +444,67 @@ public class Principal {
 		}
 	}
 
+	private void reajuste() {
+		Scanner sc = new Scanner(System.in);
+		char opc = 0;
+
+		while (Character.toUpperCase(opc) != 'N') {
+			boolean produto_encontrado = false;
+			tituloMenu();
+			System.out.println("REAJUSTE DE PREÇOS\n");
+			System.out.print("PRODUTO: ");
+			String nome = sc.nextLine();
+			for (int i=0; i < produtos.size(); i++) {
+				if (produtos.get(i).getNome().equalsIgnoreCase(nome)) {
+					System.out.println("PRODUTO ENCONTRADO!");
+					produto_encontrado = true;
+					//
+					//
+					System.out.println("-=-=-=- PRODUTO " + i + " -=-=-=-");
+					System.out.println("Nome: " + produtos.get(i).getNome());
+					System.out.println("Valor: R$" + produtos.get(i).getPreco_unit());
+					System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-");
+					//
+					//
+					System.out.print("PERCENTUAL DE REAJUSTE (%): ");
+					double percentual = sc.nextDouble();
+					while (percentual < 0) {
+						System.out.println("\nDIGITE UM VALOR VÁLIDO!");
+						System.out.println();
+						System.out.print("PERCENTUAL DE REAJUSTE (%): ");
+						percentual = sc.nextDouble();
+					}
+					double percentualSoma = produtos.get(i).getPreco_unit() * (1 + percentual / 100);
+					System.out.println("NOVO VALOR UNITARIO DO PRODUTO: R$" + (percentualSoma));
+					sc.nextLine();
+					System.out.print("CONFIRMA ALTERAÇÃO (S/N)? ");
+					char confirmar = sc.next().charAt(0);
+					while (Character.toUpperCase(confirmar) != 'S' && Character.toUpperCase(confirmar) != 'N') {
+						System.out.println("\nDIGITE UM VALOR VÁLIDO!");
+						System.out.println();
+						System.out.print("CONFIRMA ALTERAÇÃO (S/N)? ");
+						confirmar = sc.next().charAt(0);
+					}
+					if (Character.toUpperCase(confirmar) == 'S') {
+						produtos.get(i).setPreco_unit(percentualSoma);
+						break;
+					}
+				}
+			}
+			if (!produto_encontrado) {
+				System.out.println("PRODUTO NÃO ENCONTRADO!");
+			}
+			System.out.print("REPETIR OPERAÇÃO (S/N)? ");
+			opc = sc.next().charAt(0);
+			sc.nextLine();
+
+		}
+	}
+
 	private void relatorio() {
 		int n = 0;
-		System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-		System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\n" +
-				"SISTEMA DE CONTROLE DE ESTOQUE\n" +
-				"RELATÓRIO LISTA DE PREÇOS\n");
+		tituloMenu();
+		System.out.println("RELATÓRIO LISTA DE PREÇOS\n");
 		if (produtos.isEmpty()) {
 			System.out.println("NÃO HÁ PRODUTOS!");
 		} else {
@@ -487,4 +521,12 @@ public class Principal {
 			System.out.println("\n              FIM DO RELATÓRIO               ");
 		}
 	}
+
+	private void tituloMenu() {
+		System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+		System.out.println("EMPRESA DE IMPORTAÇÃO DE PRODUTOS LTDA.\r\n"
+							+ "SISTEMA DE CONTROLE DE ESTOQUE");
+	}
 }
+
+
