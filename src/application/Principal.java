@@ -7,14 +7,8 @@ import entities.Produto;
 
 public class Principal {
 	public static ArrayList<Produto> produtos = new ArrayList<>();
-	//Produto prod = new Produto();
 	
 	public static void main(String[] args) {
-		produtos.add(new Produto("Viga", 200, "m", 15));
-		produtos.add(new Produto("Caixa", 4, "kg", 32));
-		produtos.add(new Produto("Porta", 800, "cm", 7));
-		produtos.add(new Produto("Parafuso", 2, "g", 240));
-		produtos.add(new Produto("Madeira", 100, "cm", 120));
 		int opcao = 1;
 		Scanner sc = new Scanner(System.in);
 		Principal pr = new Principal();
@@ -150,7 +144,7 @@ public class Principal {
 					System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-");
                     //
                     //
-                    System.out.print("QUANTIDADE DE ENTRADA: ");
+                    System.out.print("\nQUANTIDADE DE ENTRADA: ");
                     int quantidade = sc.nextInt();
                     while (quantidade <= 0) {
                         System.out.println("\nDIGITE UM VALOR VÁLIDO!");
@@ -160,12 +154,12 @@ public class Principal {
                     }
 					System.out.println("QUANTIDADE FINAL: " + (produtos.get(i).getQnt_estoque() + quantidade));
                     sc.nextLine();
-                    System.out.print("CONFIRMA ALTERAÇÃO (S/N)? ");
+                    System.out.print("CONFIRMAR ENTRADA (S/N)? ");
                     char confirmar = sc.next().charAt(0);
                     while (Character.toUpperCase(confirmar) != 'S' && Character.toUpperCase(confirmar) != 'N') {
                         System.out.println("\nDIGITE UM VALOR VÁLIDO!");
                         System.out.println();
-                        System.out.print("CONFIRMA ALTERAÇÃO (S/N)? ");
+                        System.out.print("CONFIRMAR ENTRADA (S/N)? ");
                         confirmar = sc.next().charAt(0);
                     }
                     if (Character.toUpperCase(confirmar) == 'S') {
@@ -259,22 +253,23 @@ public class Principal {
 			System.out.print("PREÇO: R$");
 			double preco = sc.nextDouble();
 			sc.nextLine();
-			while (preco < 0) {
+			while (preco <= 0) {
 				System.out.println("\nDIGITE UM VALOR VÁLIDO!");
 				System.out.println();
 				System.out.print("PREÇO: R$");
 				preco = sc.nextDouble();
 			}
+			sc.nextLine();
 
 			System.out.print("UNIDADE: ");
 			String unidade = sc.nextLine();
 
 			System.out.print("QUANTIDADE: ");
 			int quantidade = sc.nextInt();
-			while (quantidade <= 0) {
+			while (quantidade < 0) {
 				System.out.println("\nDIGITE UM VALOR VÁLIDO!");
 				System.out.println();
-				System.out.print("PREÇO: R$");
+				System.out.print("QUANTIDADE: ");
 				quantidade = sc.nextInt();
 			}
 			sc.nextLine();
@@ -322,17 +317,18 @@ public class Principal {
 					System.out.print("\nPREÇO A SER ALTERADO: R$");
 					double preco = sc.nextDouble();
 					sc.nextLine();
-					while (preco < 0) {
+					while (preco <= 0) {
 						System.out.println("\nDIGITE UM VALOR VÁLIDO!");
 						System.out.println();
-						System.out.print("PREÇO: R$");
+						System.out.print("PREÇO A SER ALTERADO: R$");
 						preco = sc.nextDouble();
 					}
+					sc.nextLine();
 					System.out.print("UNIDADE A SER ALTERADA: ");
 					String unidade = sc.nextLine();
 					System.out.print("QUANTIDADE A SER ALTERADA: ");
 					int quantidade = sc.nextInt();
-					while (quantidade <= 0) {
+					while (quantidade < 0) {
 						System.out.println("\nDIGITE UM VALOR VÁLIDO!");
 						System.out.println();
 						System.out.print("QUANTIDADE A SER ALTERADA:");
@@ -420,7 +416,7 @@ public class Principal {
 					System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-");
 					//
 					//
-					System.out.print("DESEJA MESMO EXCLUIR O PRODUTO (S/N)? ");
+					System.out.print("\nDESEJA MESMO EXCLUIR O PRODUTO (S/N)? ");
 					char confirmar_exclusao = sc.next().charAt(0);
 					while (Character.toUpperCase(confirmar_exclusao) != 'S'
 							&& Character.toUpperCase(confirmar_exclusao) != 'N') {
@@ -431,6 +427,7 @@ public class Principal {
 					}
 					if (Character.toUpperCase(confirmar_exclusao) == 'S') {
 						produtos.remove(i);
+						System.out.println("PRODUTO EXCLUIDO COM SUCESSO!");
 						break;
 					}
 				}

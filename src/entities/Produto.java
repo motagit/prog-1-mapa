@@ -14,9 +14,6 @@ public class Produto {
 		this.qnt_estoque = qnt_estoque;
 	}
 
-	public Produto() {
-	}
-
 	public String getNome() {
 		return nome;
 	}
