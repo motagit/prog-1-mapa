@@ -252,7 +252,6 @@ public class Principal {
 			}
 			System.out.print("PREÇO: R$");
 			double preco = sc.nextDouble();
-			sc.nextLine();
 			while (preco <= 0) {
 				System.out.println("\nDIGITE UM VALOR VÁLIDO!");
 				System.out.println();
@@ -316,7 +315,6 @@ public class Principal {
 					//
 					System.out.print("\nPREÇO A SER ALTERADO: R$");
 					double preco = sc.nextDouble();
-					sc.nextLine();
 					while (preco <= 0) {
 						System.out.println("\nDIGITE UM VALOR VÁLIDO!");
 						System.out.println();
